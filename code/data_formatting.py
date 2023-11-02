@@ -77,8 +77,6 @@ def split_sequence_nooverlap(features, labels, window_size, step_size):
 
 
 def normalize_data(train_df, normalise_individual_subjects):
-  #train_df = train.drop(train.columns[0], axis=1)  # drop index column
-  #train_df = train.drop(['Condition','Subject','index'], axis= 1)
   subjects = pd.factorize(train_df['Subject'])[0]
   train_df = train_df.drop(['Condition','Subject','Emotion','Presence'], axis= 1)
   features_numpy = train_df.to_numpy(dtype='float32')
@@ -88,7 +86,6 @@ def normalize_data(train_df, normalise_individual_subjects):
   if normalise_individual_subjects:
     for i in np.unique(subjects): # normalise each subject individually
       scaler = preprocessing.StandardScaler()  # BEST
-      #scaler = preprocessing.MinMaxScaler()
       (features_numpy[(subjects==i)])[:, floatcols] = scaler.fit_transform((features_numpy[(subjects==i)])[:, floatcols])
   else:
     scaler = preprocessing.StandardScaler()  # BEST
@@ -108,56 +105,4 @@ def set_targets(train_df, list_targets, list_labels):
   for i in range(len(list_targets)):
     targets_numpy[targets_numpy==(65+list_targets[i])] = list_labels[i] 
     
-  ''' old code
-  train_df = train_df.drop(train_df[train_df['Condition'] == 65].index) # stimulation
-  train_df = train_df.drop(train_df[train_df['Condition'] == 66].index) # stimulation
-  #train_df = train_df.drop(train_df[train_df['Condition'] == 67].index) # repos
-  #train_df = train_df.drop(train_df[train_df['Condition'] == 68].index) # repos
-  train_df = train_df.drop(train_df[train_df['Condition'] == 69].index) # interaction
-  train_df = train_df.drop(train_df[train_df['Condition'] == 70].index) # interaction
-  #train_df = train_df.drop(train_df[(train_df['Emotion'] > 0.2) & (train_df['Emotion'] < 0.8)].index)
-  #train_df = train_df.drop(train_df[(train_df['Presence'] > 0.2) & (train_df['Presence'] < 0.8)].index)
-
-  targets_numpy = train_df.Condition.values
-
-  nclasses = 2
-  # 1) Classification des conditions
-  # Replace the condition codes (65..70) with target values (0..n)
-  #targets_numpy[targets_numpy==65] = 0  # Stimulation : neutre
-  #targets_numpy[targets_numpy==66] = 1  # Stimulation : emotionnelle
-  targets_numpy[targets_numpy==67] = 0  # Repos : neutre
-  targets_numpy[targets_numpy==68] = 1  # Repos : emotionnel
-  #targets_numpy[targets_numpy==69] = 0  # Interaction : neutre
-  #targets_numpy[targets_numpy==70] = 1  # Interaction : emotionnelle
-  '''
-
-  '''
-  nclasses = 2
-  # 2) Estimations subjectives des sujets :
-  # Emotion
-  targets_numpy[train_df.Emotion.values<0.6] = 0
-  targets_numpy[train_df.Emotion.values>=0.6] = 1
-  # Présence
-  #targets_numpy[train_df.Presence.values<0.5] = 0
-  #targets_numpy[train_df.Presence.values>=0.5] = 1
-  '''
-
-  '''
-  # regression
-  nclasses = 1
-  #targets_numpy = np.log(1+train_df.Emotion.values)
-  #targets_numpy = np.power(train_df.Emotion.values,2)
-  targets_numpy = train_df.Emotion.values
-  #targets_numpy = train_df.Presence.values
-  
-  # normalise targets
-  subjects = pd.factorize(train_df['Subject'])[0]
-  for i in np.unique(subjects): # normalise each subject individually
-    scaler = preprocessing.StandardScaler()  # BEST
-    #scaler = preprocessing.MinMaxScaler()
-    targets_numpy[(subjects==i)] = np.squeeze(scaler.fit_transform(np.expand_dims(targets_numpy[(subjects==i)],1)))
-    '''
-
   return train_df, nclasses, targets_numpy
-
-
