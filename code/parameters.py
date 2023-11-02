@@ -4,7 +4,7 @@ def initialize_parameters():
   global seq_dim
   seq_dim= 1000       # length of sequences in frames
   global test_seq_dim
-  test_seq_dim= 1100  #900     # length of test sequences in frames
+  test_seq_dim= 1000  #900     # length of test sequences in frames
   global overlap_size
   overlap_size = 60  # number of frame of overlap in sequences
   global test_overlap_size
