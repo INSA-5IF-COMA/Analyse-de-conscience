@@ -3,12 +3,12 @@ import numpy as np
 
 subject = 3
 
-# 0: SelfStim
-# 1: CtrlStim
-# 2: SelfRest
-# 3: CtrlRest
-# 4: SelfSoc
-# 5: CtrlSoc
+# 1: SelfStim
+# 2: CtrlStim
+# 3: SelfRest
+# 4: CtrlRest
+# 5: SelfSoc
+# 6: CtrlSoc
 
 print("SelfStim vs CtrlStim")
 grouped_ts_1_2 = explain_temporal(f"conf9000/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [0,1], [0,1], subject, 0)
