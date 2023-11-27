@@ -8,8 +8,7 @@ class CNN(nn.Module):
         # Define the architecture with layers based on the input arguments
         self.conv1 = nn.Conv1d(seq_dim, 128, 4)
         self.conv2 = nn.Conv1d(128, 256, 3)
-        self.conv3 = nn.Conv1d(256, 32, 3)
-        #self.conv4 = nn.Conv1d(128, 256,3)
+        self.conv3 = nn.Conv1d(256, 32 , 3)
         self.relu = nn.ReLU()
         
         self.dropout1 = nn.Dropout(p=dropout_rate)

@@ -22,10 +22,10 @@ subject = 3
 # grouped_ts_1_4 = explain_temporal(f"conf9002/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [0,3], [0,1], subject, 0)
 # grouped_ts_1_4r = explain_temporal(f"conf9002/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [0,3], [0,1], subject, 1)
 
-# print("SelfStim vs SelfSoc")
-# grouped_ts_1_5 = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [0,4], [0,1], subject, 0)
-# grouped_ts_1_5r = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [0,4], [0,1], subject, 1)
-# print(grouped_ts_1_5)
+print("SelfStim vs SelfSoc")
+grouped_ts_1_5 = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [0,4], [0,1], subject, 0)
+grouped_ts_1_5r = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [0,4], [0,1], subject, 1)
+print(grouped_ts_1_5)
 
 # print("SelfStim vs CtrlSoc")
 # grouped_ts_1_6 = explain_temporal(f"conf9004/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [0,5], [0,1], subject, 0)
@@ -63,9 +63,9 @@ subject = 3
 # grouped_ts_4_5 = explain_temporal(f"conf9012/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [3,4], [0,1], subject, 0)
 # grouped_ts_4_5r = explain_temporal(f"conf9012/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [3,4], [0,1], subject, 1)
 
-print("CtrlRest vs CtrlSoc")
-grouped_ts_4_6 = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [3,5], [0,1], subject, 0)
-grouped_ts_4_6r = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [3,5], [0,1], subject, 1)
+# print("CtrlRest vs CtrlSoc")
+# grouped_ts_4_6 = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [3,5], [0,1], subject, 0)
+# grouped_ts_4_6r = explain_temporal("D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\Analyse-de-conscience\\code\\best_model_checkpoint_0_4.pth", "D:\\Donnees\\Documents\\insa\\5IF\\PSAT\\CNN1D\\data\\video\\All_Subs_Diff_Modules_nofilter_withoutAUc.csv", [3,5], [0,1], subject, 1)
 
 # print("SelfSoc vs CtrlSoc")
 # grouped_ts_5_6 = explain_temporal(f"conf9014/checkpoint_{subject:02d}_00.ckpt", "/data/private/eveilcoma/temoins2022/Tables_for_DL/All_Subs_Diff_Modules_new_withoutAUc.csv", [4,5], [0,1], subject, 0)

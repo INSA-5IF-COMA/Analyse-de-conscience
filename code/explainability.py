@@ -17,7 +17,8 @@ from cnnArchitecture import CNN
 
 
 # explain_idx : choose which class to explain (class labels 0,1)
-def explain_temporal(model_filename, train_data, list_targets, list_labels, test_subj, explain_idx, test_overlap_size=100, test_seq_dim = 900):
+# why test_seq_dim is 900 ? -> changed it to 900 so code works
+def explain_temporal(model_filename, train_data, list_targets, list_labels, test_subj, explain_idx, test_overlap_size=100, test_seq_dim = 1000):
 
   parameters.initialize_parameters()
 
