@@ -1,2 +1,3 @@
 # Don't save data in the container
 data/
+code/__pycache__/
