@@ -6,31 +6,35 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         
         # Define the architecture with layers based on the input arguments
-        self.conv1 = nn.Conv1d(seq_dim, 128, 4)
-        self.conv2 = nn.Conv1d(128, 256, 3)
-        self.conv3 = nn.Conv1d(256, 32 , 3)
+        self.conv1 = nn.Conv1d(seq_dim, 16, 6)
+        self.conv2 = nn.Conv1d(16, 64, 3)
+        self.conv3 = nn.Conv1d(64, 32 , 3)
         self.relu = nn.ReLU()
+
         
         self.dropout1 = nn.Dropout(p=dropout_rate)
 
-        # Mise à jour de fc_input_size en fonction des couches de pooling
-        self.fc_input_size = 32 * ( input_dim - 4 - 3 - 3 + 3) 
-        self.fc = nn.Linear(self.fc_input_size, 2)
+        # Fully connected layer
+        self.fc_input_size = 32 * ( input_dim - 6 - 3 - 3 + 3) 
+        self.fc1 = nn.Linear(self.fc_input_size, 128)
+        self.fc2 = nn.Linear(128, 64)
+        self.fc3 = nn.Linear(64, 2) 
 
     def forward(self, x):
         # Forward pass
         x = self.conv1(x)
         x = self.relu(x)
-        x = self.dropout1(x)
 
         x = self.conv2(x)
         x = self.relu(x)
 
         x = self.conv3(x)
+        x = self.dropout1(x)
         x = self.relu(x)
-        
+
         x = x.view(x.size(0), -1)
-        
-        x = self.fc(x)
+        x = self.fc1(x)
+        x = self.fc2(x)
+        x = self.fc3(x)
         
         return x
