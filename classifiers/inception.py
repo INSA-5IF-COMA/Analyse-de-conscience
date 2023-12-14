@@ -117,10 +117,11 @@ class Classifier_INCEPTION:
         """
 
 
-        gpus = tf.config.experimental.list_physical_devices('GPU')
-        if not gpus:
-            print('Error: No GPU devices available')
-            sys.exit()
+        # gpus = tf.config.experimental.list_physical_devices('GPU')
+        # print(f'GPUS:{gpus}')
+        # if not gpus:
+        #     print('Error: No GPU devices available')
+        #     sys.exit()
 
         # x_val and y_val are only used to monitor the test loss and NOT for training
 
