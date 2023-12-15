@@ -119,7 +119,7 @@ def calculate_metrics(y_true, y_pred, duration):
 
 
 def save_test_duration(file_name, test_duration):
-    res = pd.DataFrame(data=np.zeros((1, 1), dtype=np.float), index=[0],
+    res = pd.DataFrame(data=np.zeros((1, 1), dtype=np.float64), index=[0],
                        columns=['test_duration'])
     res['test_duration'] = test_duration
     res.to_csv(file_name, index=False)
@@ -146,7 +146,7 @@ def transform_labels(y_train, y_test):
 
 
 def generate_results_csv(output_file_name, root_dir, clfs):
-    res = pd.DataFrame(data=np.zeros((0, 8), dtype=np.float), index=[],
+    res = pd.DataFrame(data=np.zeros((0, 8), dtype=np.float64), index=[],
                        columns=['classifier_name', 'archive_name', 'dataset_name', 'iteration',
                                 'precision', 'accuracy', 'recall', 'duration'])
     for archive_name in ARCHIVE_NAMES:
@@ -199,7 +199,7 @@ def save_logs(output_directory, hist, y_pred, y_true, duration,
     index_best_model = hist_df['loss'].idxmin()
     row_best_model = hist_df.loc[index_best_model]
 
-    df_best_model = pd.DataFrame(data=np.zeros((1, 6), dtype=np.float), index=[0],
+    df_best_model = pd.DataFrame(data=np.zeros((1, 6), dtype=np.float64), index=[0],
                                  columns=['best_model_train_loss', 'best_model_val_loss', 'best_model_train_acc',
                                           'best_model_val_acc', 'best_model_learning_rate', 'best_model_nb_epoch'])
 
