@@ -13,7 +13,7 @@ from utils.utils import save_test_duration
 class Classifier_INCEPTION:
 
     def __init__(self, output_directory, input_shape, nb_classes, verbose=False, build=True, batch_size=64,
-                 nb_filters=32, use_residual=True, use_bottleneck=True, depth=6, kernel_size=41, nb_epochs=1500):
+                 nb_filters=32, use_residual=True, use_bottleneck=True, depth=6, kernel_size=41, nb_epochs=50): #nb_epochs was initially at 1500
 
         self.output_directory = output_directory
 
@@ -125,6 +125,7 @@ class Classifier_INCEPTION:
 
         # x_val and y_val are only used to monitor the test loss and NOT for training
 
+        print("Fitting the model\n")
         if self.batch_size is None:
             mini_batch_size = int(min(x_train.shape[0] / 10, 16))
         else:
@@ -133,20 +134,24 @@ class Classifier_INCEPTION:
         start_time = time.time()
 
         if plot_test_acc:
-
             hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=self.nb_epochs,
                                   verbose=self.verbose, validation_data=(x_val, y_val), callbacks=self.callbacks)
         else:
-
             hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=self.nb_epochs,
                                   verbose=self.verbose, callbacks=self.callbacks)
 
+        
         duration = time.time() - start_time
+
+        print("Saving last model\n")
 
         self.model.save(self.output_directory + 'last_model.hdf5')
 
+        print("Predicting\n")
         y_pred = self.predict(x_val, y_true, x_train, y_train, y_val,
                               return_df_metrics=False)
+
+        print("Saving predictions\n")
 
         # save predictions
         np.save(self.output_directory + 'y_pred.npy', y_pred)

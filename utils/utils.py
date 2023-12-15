@@ -109,7 +109,7 @@ def read_all_datasets(root_dir, archive_name):
 
 
 def calculate_metrics(y_true, y_pred, duration):
-    res = pd.DataFrame(data=np.zeros((1, 4), dtype=np.float), index=[0],
+    res = pd.DataFrame(data=np.zeros((1, 4), dtype=np.float64), index=[0],
                        columns=['precision', 'accuracy', 'recall', 'duration'])
     res['precision'] = precision_score(y_true, y_pred, average='macro')
     res['accuracy'] = accuracy_score(y_true, y_pred)
