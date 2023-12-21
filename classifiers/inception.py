@@ -155,15 +155,21 @@ class Classifier_INCEPTION:
 
         # save predictions
         np.save(self.output_directory + 'y_pred.npy', y_pred)
+        print("saving Y_pred\n")
 
         # convert the predicted from binary to integer
         y_pred = np.argmax(y_pred, axis=1)
 
+        print("convert predicted from binary to integer\n")
+
         df_metrics = save_logs(self.output_directory, hist, y_pred, y_true, duration,
                                plot_test_acc=plot_test_acc)
-
+        
+        print("saving df_metrics\n")
+        
         keras.backend.clear_session()
-
+        
+        print("clearing session, next instruction is return\n")
         return df_metrics
 
     def predict(self, x_test, y_true, x_train, y_train, y_test, return_df_metrics=True):

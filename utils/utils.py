@@ -196,24 +196,31 @@ def save_logs(output_directory, hist, y_pred, y_true, duration,
     df_metrics = calculate_metrics(y_true, y_pred, duration)
     df_metrics.to_csv(output_directory + 'df_metrics.csv', index=False)
 
+    print("df_metrics.csv saved\n")
     index_best_model = hist_df['loss'].idxmin()
+    print("1\n")
     row_best_model = hist_df.loc[index_best_model]
+    print("2\n")
 
     df_best_model = pd.DataFrame(data=np.zeros((1, 6), dtype=np.float64), index=[0],
                                  columns=['best_model_train_loss', 'best_model_val_loss', 'best_model_train_acc',
                                           'best_model_val_acc', 'best_model_learning_rate', 'best_model_nb_epoch'])
-
+    print("3: df_best_model\n")
     df_best_model['best_model_train_loss'] = row_best_model['loss']
+    print("4: df_best_model -> train loss\n")
     if plot_test_acc:
         df_best_model['best_model_val_loss'] = row_best_model['val_loss']
-    df_best_model['best_model_train_acc'] = row_best_model['acc']
+    df_best_model['best_model_train_acc'] = row_best_model['accuracy'] # change this from acc to accuracy
+    print("5: df_best_model -> train acc\n")
     if plot_test_acc:
         df_best_model['best_model_val_acc'] = row_best_model['val_acc']
     if lr == True:
         df_best_model['best_model_learning_rate'] = row_best_model['lr']
     df_best_model['best_model_nb_epoch'] = index_best_model
+    print("6: df_best_model -> number of epochs\n")
 
     df_best_model.to_csv(output_directory + 'df_best_model.csv', index=False)
+    print("7: save df_best_model csv \n")
 
     if plot_test_acc:
         # plot losses
