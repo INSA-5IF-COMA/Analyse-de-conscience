@@ -125,7 +125,7 @@ class Classifier_INCEPTION:
 
         # x_val and y_val are only used to monitor the test loss and NOT for training
 
-        print("Fitting the model\n")
+        print("\t\tFitting the model")
         if self.batch_size is None:
             mini_batch_size = int(min(x_train.shape[0] / 10, 16))
         else:
@@ -143,33 +143,22 @@ class Classifier_INCEPTION:
         
         duration = time.time() - start_time
 
-        print("Saving last model\n")
-
         self.model.save(self.output_directory + 'last_model.hdf5')
 
-        print("Predicting\n")
         y_pred = self.predict(x_val, y_true, x_train, y_train, y_val,
                               return_df_metrics=False)
 
-        print("Saving predictions\n")
-
         # save predictions
         np.save(self.output_directory + 'y_pred.npy', y_pred)
-        print("saving Y_pred\n")
 
         # convert the predicted from binary to integer
         y_pred = np.argmax(y_pred, axis=1)
 
-        print("convert predicted from binary to integer\n")
-
         df_metrics = save_logs(self.output_directory, hist, y_pred, y_true, duration,
                                plot_test_acc=plot_test_acc)
         
-        print("saving df_metrics\n")
-        
         keras.backend.clear_session()
         
-        print("clearing session, next instruction is return\n")
         return df_metrics
 
     def predict(self, x_test, y_true, x_train, y_train, y_test, return_df_metrics=True):
