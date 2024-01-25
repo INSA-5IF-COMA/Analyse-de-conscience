@@ -1,4 +1,3 @@
-import sys
 import pandas as pd
 import torch
 import torch.nn as nn
@@ -13,7 +12,7 @@ from data_formatting import split_sequence_overlap, split_sequence_nooverlap, sp
 import parameters
 from tqdm import tqdm
 from captum.attr import IntegratedGradients
-from cnn_architecture import CNN
+from transformer_architecture import Transformer
 
 
 # explain_idx : choose which class to explain (class labels 0,1)
@@ -100,7 +99,9 @@ def explain_temporal(model_filename, train_data, list_targets, list_labels, test
   learning_rate = 0.0001 # Adam
   weight_decay = 10e-4
 
-  model = CNN(input_dim, parameters.seq_dim).to(device)
+  # model = CNN(input_dim, parameters.seq_dim).to(device)
+  model = Transformer(parameters.batch_size, 64).to(device)
+
   optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
   # Cross Entropy Loss
@@ -272,5 +273,3 @@ def explain_temporal(model_filename, train_data, list_targets, list_labels, test
   print(f"Test accuracy: {accuracy}")
 
   return grouped_ts
-
-
